@@ -1,0 +1,82 @@
+CREATE table users (
+	id varchar NOT NULL,
+	name varchar NOT NULL,
+	state varchar NOT NULL,
+	address varchar NOT NULL,
+	username varchar NOT NULL,
+	password varchar NOT NULL,
+	annual_sal int NOT NULL,
+
+	CONSTRAINT pk_user_id
+		PRIMARY KEY(id)
+);
+
+create table bank_account (
+	id varchar not null,
+	debit_id varchar not null,
+	credit_id varchar not null,
+	loan_id varchar not null,
+
+	constraint pk_bank_account_id
+		primary key (id)
+
+
+);
+
+
+alter table bank_account
+	add constraint fk_user
+		foreign key(user_id) references users(id);
+
+alter table bank_account
+	add constraint fk_credit
+		foreign key (credit_id) references credit_account (id),
+	add constraint fk_loan
+		foreign key (loan_id) references loan_account (id);
+
+create table loan_account (
+	id varchar not null,
+	loan_amount int not null,
+	loan_history_id varchar not null,
+
+	constraint pk_loan_account_id
+		primary key (id)
+);
+
+alter table loan_account
+	add constraint fk_loan_history
+		foreign key (loan_history_id) references loan_history (id);
+
+create table loan_history (
+	id varchar not null,
+	date varchar not null,
+	action varchar not null,
+	amount int not null,
+
+	constraint pk_loan_history
+		primary key(id)
+);
+
+create table debit_account(
+	id varchar not null,
+	debit_deposit int not null,
+	debit_withdraw int not null,
+
+	constraint pk_debit_account
+		primary key (id)
+);
+
+
+create table credit_account (
+	id varchar not null,
+	credit_balance int not null,
+	credit_withdraw int not null,
+	debit_id varchar not null,
+
+	constraint pk_credit_account_id
+		primary key (id)
+);
+
+alter table credit_account
+	add constraint fk_debit_id
+		foreign key (debit_id) references debit_account(id);
