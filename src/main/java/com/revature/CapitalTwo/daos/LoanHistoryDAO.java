@@ -6,11 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class LoanHistoryDAO implements CrudDAO<LoanHistory>{
+public class LoanHistoryDAO implements CrudDAO<Loan_History>{
     Connection con = DatabaseConnection.getCon();
 
     @Override
-    public void save(LoanHistory obj) {
+    public void save(Loan_History obj) {
         try{
             PreparedStatement ps = con.prepareStatement("INSERT INTO user (id, date, action, amount) VALUES (?, ?, ?, ?,)");
             ps.setString(1, obj.getId());
@@ -24,7 +24,7 @@ public class LoanHistoryDAO implements CrudDAO<LoanHistory>{
     }
 
     @Override
-    public void update(LoanHistory obj) {
+    public void update(Loan_History obj) {
 
     }
 
@@ -34,12 +34,12 @@ public class LoanHistoryDAO implements CrudDAO<LoanHistory>{
     }
 
     @Override
-    public LoanHistory getById(String id) {
+    public Loan_History getById(String id) {
         return null;
     }
 
     @Override
-    public List<LoanHistory> getAll() {
+    public List<Loan_History> getAll() {
         return null;
     }
 

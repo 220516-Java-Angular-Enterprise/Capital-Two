@@ -6,16 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class LoanAccountDAO implements CrudDAO<LoanAccount>{
+public class LoanAccountDAO implements CrudDAO<Loan_Account>{
     Connection con = DatabaseConnection.getCon();
 
+
     @Override
-    public void save(LoanAccount obj) {
+    public void save(Loan_Account obj) {
         try{
-            PreparedStatement ps = con.prepareStatement("INSERT INTO user (id, loanAmount, loanHistoryId) VALUES (?, ?, ?)");
-            ps.setString(1, obj.getId());
-            ps.setInt(2, obj.getLoanAmount());
-            ps.setString(3, obj.getLoanHistoryId());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO user (id, loan_amount, loan_history_id) VALUES (?, ?, ?)");
+            ps.setString(1, obj.get_Id());
+            ps.setInt(2, obj.get_Loan_Amount());
+            ps.setString(3, obj.get_Loan_History_Id());
             ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException("An error occurred when trying to save to the database.");
@@ -23,7 +24,7 @@ public class LoanAccountDAO implements CrudDAO<LoanAccount>{
     }
 
     @Override
-    public void update(LoanAccount obj) {
+    public void update(Loan_Account obj) {
 
     }
 
@@ -33,13 +34,12 @@ public class LoanAccountDAO implements CrudDAO<LoanAccount>{
     }
 
     @Override
-    public LoanAccount getById(String id) {
+    public Loan_Account getById(String id) {
         return null;
     }
 
     @Override
-    public List<LoanAccount> getAll() {
+    public List<Loan_Account> getAll() {
         return null;
     }
-
 }

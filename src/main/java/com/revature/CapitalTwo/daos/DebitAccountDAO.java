@@ -6,23 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DebitAccountDAO implements CrudDAO<DebitAccount>{
+public class DebitAccountDAO implements CrudDAO<Debit_Account>{
     Connection con = DatabaseConnection.getCon();
 
     @Override
-    public void save(DebitAccount obj) {
+    public void save(Debit_Account obj) {
         try{
-            PreparedStatement ps = con.prepareStatement("INSERT INTO user (id, debitDeposit, debitWithdraw) VALUES (?, ?, ?)");
-            ps.setString(1, obj.getId());
-            ps.setInt(2, obj.getDebitDeposit());
-            ps.setInt(3, obj.getDebitWithdraw());
+            PreparedStatement ps = con.prepareStatement("INSERT INTO user (id, debit_deposit, debit_withdraw) VALUES (?, ?, ?)");
+            ps.setString(1, obj.get_Id());
+            ps.setInt(2, obj.get_Debit_Deposit());
+            ps.setInt(3, obj.get_Debit_Withdraw());
             ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException("An error occurred when trying to save to the database.");
         }
     }
+
     @Override
-    public void update(DebitAccount obj) {
+    public void update(Debit_Account obj) {
 
     }
 
@@ -32,12 +33,12 @@ public class DebitAccountDAO implements CrudDAO<DebitAccount>{
     }
 
     @Override
-    public DebitAccount getById(String id) {
+    public Debit_Account getById(String id) {
         return null;
     }
 
     @Override
-    public List<DebitAccount> getAll() {
+    public List<Debit_Account> getAll() {
         return null;
     }
 }
